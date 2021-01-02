@@ -1,0 +1,212 @@
+JAVASCRIPT FUNDAMENTALS NOTES
+taken from "Javascript Fundamentals" video by Coding Addict
+
+html=structure, css=styling, Javascript=functionality and interaction/makes webpage dynamic and creates user interaction
+real world example=MENU PROJECT, TIMER PROJECT
+
+GOALS OF VIDEO=comfortable with Javascript(using external resources), apply theory, build your own projects, pickup framework
+
+STRUCTURE OF VIDEO=info, dev environment setup, theory, practice, repeat... 
+
+DEV ENVIRONMENT SETUP=vs code, chrome, extensions, settings, emmet, basic html document 
+
+//1. INTERNAL JAVASCRIPT//
+
+<button onclick="alert('hello world')">click me</button>
+ 
+*sidenote*: keyboard shortcuts for vs code in windows or mac=click help and then click "Keyboard Shortcuts Reference"
+as projects get bigger and bigger, internal javascript needed to minimize inefficiencies 
+
+place <script></script> tags usually near the bottom after all html to make sure html loads before javascript 
+the browser can become overwhelmed with javascript notation if placed before html and then html will not load
+
+ex: 
+<button class="btn">random button</button>
+<button class="btn">random button</button>
+<button class="btn">random button</button>
+<button class="btn">random button</button>
+<button class="btn">random button</button>
+<button class="btn">random button</button>
+
+if you would want to change the text given or received by all of your buttons, the inefficiency would be having to change them all individually 
+however, with javascript, you can add a script tag and create an alert from an event listener to change the text for all of your buttons instantly
+
+<script>
+    document.querySelectorAll('.btn').forEach((item) => {
+        item.addEventListener('click', () => {
+            alert('this is good')
+        })
+    })
+</script>
+
+syntax will be learned later but as you can see, to create a query selector is more efficient than changing the text for each button in html 
+
+//2. EXTERNAL JAVASCRIPT//
+
+issue: what if we would have another page in your project?
+could we just create another HTML page with the same html structure, add link for first page <a href="index.html"></a>, add the javascript from the first page and proceed with project?
+you could but with projects that contain thousands of lines of code, to change the code of each page would be messy and take forever
+therefore, the solution is creating the .js page in your project that will apply javascript to all other pages equally (makes sure to reference it in your html pages)
+
+*sidenote*: relative path is an easy way to source other pages within the same folder; to use a relative path==> add a script tag with a src in the opening tag <script src="./index.html"></script> 
+and in the quotation marks for the src, add a period . and a backslash / and it will prompt you to choose which file you would like to add 
+if the file you would like to add is not in the same folder, make sure to navigate to the proper folder when adding your page just as you would when creating your project in VS code 
+
+//3. HELPER METHODS//
+
+in order to progress with javascript, it is very helpful to know what is going on with your code and what the result is that is being returned to you 
+
+the first is document.write('')
+the second is alert(''), which could be described as those annoying popup boxes
+the third and MOST POWERFUL is console.log(''); also possible to check your console in your browser by inspecting the page and selecting console 
+why is console.log the most powerful? it allows for better visualization of pretty much anything you would want (especially arrays of objects)
+
+//4. VARIABLES//
+
+most basic building block of javascript however not solely used by javascript; can store, access and modify any value
+to set up a variable, the first step would be establishing a key word (ex. let)
+declare, assignment operator, assign value = successful variable 
+
+let name = "(value that is assigned to variable)"; 
+console.log(name);
+
+*sidenote*: "undefined" will appear on your console if there is no value assigned to your variable 
+
+when declaring or console logging multiple variables on the same line, separate each variable with a comma 
+
+let name = "john shrimp taco VI";
+let address, zip, state; 
+address = "101 main street"; 
+zip = "60623"; 
+state = "CA"; 
+console.log(address, zip, state);
+
+//5. VARIABLE NAMING RULES//
+
+can contain digits, letters, underscore or $ but it MUST start with letters, $ or underscore 
+cannot contain keywords or start with numbers 
+case sensitive - fullname vs fullName 
+camelCase or underscore 
+
+//6. KEYWORDS FOR DECLARING VARIABLES//
+
+let vs const vs var 
+
+using var: original method for declaring variables but eventually was replaced for efficiency by let and const 
+using const: cannot be reassigned and will generate an error message if the value of the variable is changed 
+
+//7. STRING CONCATENATION//
+
+the goal is to combine string values 
+
+const name = "john"; 
+const lastName = "shakeandbake";
+let fullName;
+
+console.log("hello there your full name is : " + name + '' + lastName);
+or 
+let fullName = name + '' + lastName;
+console.log("hello there your full name is : " + fullName);
+
+//8. NUMBERS BASICS//
+
+javascript is a loosely typed language (don't necessarily have to declare type) but do not put the quotation marks around number value
+
+const number = 34; 
+let pants = 2.466; 
+pants = "are great"; 
+
+console.log(number);
+console.log(pants)
+
+*sidenote*: when console logging, numbers are blue while strings are black (if you want a number, it should appear in the console as blue and not black)
+
++= is the equivalent of just adding the value to the older variable 
+-= is the equivalent of just subtracting the value to the older variable 
+/= is the equivalent of just dividing the value to the older variable 
+*= is the equivalent of just multiplying the value to the older variable 
+++ is the equivalent of adding 1 to the older variable 
+-- is the equivalent of subtracting 1 to the older variable
+
+Modulus operator (%): returns the remainder after integer division 
+ex. if you were to order a pizza for your kids, how many slices would each child get?
+const slices = 10; 
+const children = 3; 
+const amount = slices / children; 
+console.log(amount); //would equal 3.33333 but how many full slices and how many slices are left over?
+
+const amount = slices % children; each child would get 3 slices ---> 3 children * 3 slices = 9 slices eaten with 1 slice left over
+therefore, const amount = slices % children; //would equal 1 slice left over
+
+the same would happen if there were 4 children 
+const slices = 10; 
+const children = 4; 
+const amount = slices % children; //with 4 children, each child would get 2 slices and there would be 2 slices left over 
+10 / 4 = 2.5; you would not round up to find the nearest whole number but round down and then have a remainder 
+
+//9. IMPLICIT TYPE CONVERSION//
+
+const name = 'john'; 
+const lastName = 'jordan'; 
+const fullName = name + '' + lastName; 
+console.log(fullName); 
+
+const number = 4; 
+const number2 = 10; 
+const result = number + number2;
+console.log(result); 
+
+math operation on a string?
+
+const value = name - lastName; 
+console.log(value); //result is NaN (not a number) 
+
+let number3 = '10'; 
+let number4 = '23';
+const result2 = number3 - number4; 
+console.log(result2); //answer is -13 (with number being blue in console)
+implicit type conversion = the strings (in quotes) are not numbers but try to calculate it anyway (you can control strings into numbers)
+
+good or bad thing?
+
+let number3 = '10'; 
+let number4 = '23';
+const result2 = number3 + number4; 
+console.log(result2); //answer is 1023 (with result being black in console)
+why did we get a string this time when we console.log it? 
+Javascript will intentionally try to help you out and treat numbers in strings as values so it is important to set up numbers correctly and assign them as number values initially and not strings! 
+
+//10. DATA TYPES//
+
+7 total data types = string, number, boolean, null, undefined, symbol (ES6), object 
+primitive = string, number, boolean, null, undefined, symbol
+object = arrays, functions, objects 
+typeof = operator that determines the type of variable or value present 
+
+string: 
+const text = 'some text';
+
+number: 
+const number = 45; 
+
+boolean: 
+values of true or false (light switch)
+let value1 = true;
+let value2 = false; 
+
+null: 
+const result = null; //if you run null, it will return a type of object even though it should just be null
+
+undefined: 
+let name; 
+
+//11. ARRAYS//
+
+arrays: offers easy way to store a list of primitive/nonprimitive data types and perform easily a variety of operations 
+
+const friend1 = 'anna';
+const friend2 = 'anna'; 
+const friend3 = 'anna'; 
+const friend4 = 'anna'; 
+is it not redundant to have to type out every single friend's name?
+const friends = ['john', 'peter', 'bob', 'susy', 45, undefined, null];
