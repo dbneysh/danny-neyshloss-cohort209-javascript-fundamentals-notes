@@ -210,3 +210,442 @@ const friend3 = 'anna';
 const friend4 = 'anna'; 
 is it not redundant to have to type out every single friend's name?
 const friends = ['john', 'peter', 'bob', 'susy', 45, undefined, null];
+*sidenote*: arrays are 0 index based 
+0: 'john'
+1: 'peter'
+2: 'bob'
+...so on and so forth... 
+console.log(friends[0]) ---> john
+
+when you want to reassign the value:
+const friends = ['john', 'peter', 'bob', 'susy', 45, undefined, null];
+let bestFriend = friends[2];
+friends[4] = 'anna';
+console.log(friends); ---> anna
+
+//12. FUNCTIONS - DECLARE, INVOKE//
+
+how can you use your function to affect your body most effectively?
+
+function hello(){
+    console.log('Hello There Bob');
+    console.log('Hello There John');
+    console.log('Hello There Susy');    
+}
+if you want to change any of the names, the solution would be a: FUNCTION! 
+the first step above shows declaring the function with keyword ---> function hello(){}
+what would be the second step? invoking the function! that would look like this: hello();
+without invoking the function, your console will not show your function or pretty much anything 
+but after invoking, your console would show: 
+Hello There Bob
+Hello There John
+Hello There Susy
+
+The benefit of doing this is that any time you would want to change your output without having to change each individual line of code,
+you can change your logic in the function and it will change the entirety of your output  
+
+//13. FUNCTIONS - PARAMETERS AND ARGUMENTS//
+
+ex. 
+function helloBob() {
+    //logic
+    console.log('Hello There Bob);
+} 
+function helloAnna() {
+    //logic
+    console.log('Hello There Anna);
+} 
+function helloSusy() {
+    //logic
+    console.log('Hello There Susy);
+}
+
+//greet bob
+helloBob();
+//greet anna
+helloAnna();
+//greet susy
+helloSusy();
+
+console output:
+Hello There Bob
+Hello There Anna 
+Hello There Susy 
+
+but are we not repeating ourselves? time to use parameters and arguments (local variables and placeholders)!
+
+function greet(name){
+    console.log('Hello there ' + name);
+}
+
+//greet bob
+greet('Bob');
+//greet anna
+greet('Anna');
+//greet susy
+greet('Susy');
+
+console output:
+Hello There Bob
+Hello There Anna 
+Hello There Susy 
+
+'name' is a local variable and cannot be accessed globally; if console.log, it would return an 'undefined
+
+we could also declare more variables to pass in more arguments: 
+
+const bob = 'Bob';
+const susy = 'Susy';
+const anna = 'Anna';
+
+function greet(name, second){
+    console.log(second);
+    console.log('Hello there ' + name);
+}
+
+//greet bob
+greet('4');
+//greet anna
+greet(anna, 'Bob');
+//greet susy
+greet('Susy');
+
+console output: 
+undefined
+Hello there 4
+Bob
+Hello there Anna
+undefined
+Hello there Susy 
+
+//14. FUNCTION - RETURN//
+
+how could we convert inches to centimeters using Javascript?
+1 inch = 2.54 cm 
+
+const width = 0; 
+const height = 0; 
+const dimensions = [width, height];
+console.log(dimensions); ---> [0, 0]
+
+
+const wallHeight = 80;
+function calculate(value){
+    console.log('the value in cm is : ' + value * 2.54 + ' cm');
+}
+const width = calculate(100); 
+const height = calculate(wallHeight); 
+const dimensions = [width, height];
+console.log(dimensions); ---> [254 cm, 203.2cm] with the function returning undefined 
+
+const wallHeight = 80;
+function calculate(value){
+    console.log('the value in cm is : ' + value * 2.54 + ' cm');
+    return 'hello world';
+}
+const width = calculate(100); 
+const height = calculate(wallHeight); 
+const dimensions = [width, height];
+console.log(dimensions); ---> [254 cm, 203.2cm] with the function returning hello world 
+
+const wallHeight = 80;
+function calculate(value){
+    const newValue = value * 2.54;
+    return newValue; 
+}
+const width = calculate(100); 
+const height = calculate(wallHeight); 
+const dimensions = [width, height];
+console.log(dimensions); ---> [254 cm, 203.2cm]
+
+return should be final line of code after local variable because it will not acknowledge anything after 
+
+//15. FUNCTIONS - EXPRESSIONS//
+
+expressions: another way to define a function
+create a variable, assign to FUNCTION (not value), use var
+
+//function definition/declaration 
+
+function addValues(num1, num2){
+    return num1 + num2;
+}
+const firstValue = addValues(3, 4); 
+const secondValue = addValues(12, 34); 
+//function expression 
+const add = function addValues(num1, num2){
+    return num1 + num2;
+}
+const thirdValue = add(5, 6);
+const values = [firstValue, secondValue, thirdValue];
+console.log(values); ---> [7, 46, 11]
+
+//16. OBJECTS//
+
+think of a car: has different features and methods, can drive and perform multiple functions 
+
+start with:
+const person = {}
+above is the basic skeleton of an object 
+
+const person = {
+    name: 'john',
+    lastName: 'peters', 
+    age: 40, 
+    education: false, 
+    married: true, 
+    siblings: ['anna, 'susan', 'peter'], 
+    greeting: function (){
+        console.log('Hello my name is JOHN');
+    },
+}
+console.log(person.name);
+console.log(person.siblings[2]);
+person.greeting(); ---> Hello my name is John 
+
+//17. CONDITIONAL STATEMENTS//
+
+if(){} is the basic syntax of a conditional statement 
+
+if (true){
+    console.log('hello world');
+}
+output: hello world 
+
+if (2>1){
+    console.log('hello world');
+}
+output: hello world 
+
+const value = true;
+if (value){
+    console.log('hello world');
+}
+output: hello world 
+
+const value = 2 > 1; 
+console.log(typeof value);
+if(value){
+    console.log('hello world');
+}
+output: hello world 
+
+else{} is code that would be run if your condition is not met 
+
+const num1 = 6;
+const num2 = 6;
+if (num1 > num2){
+    console.log('first number is bigger than second');
+} else {
+    console.log('second number is bigger than first');
+}
+output: second number is bigger than first
+
+const num1 = 6;
+const num2 = 6;
+const result = num1 >= num2;
+if (num1 > num2){
+    console.log('first number is bigger than second');
+} else if (result) {
+    console.log('first number is equal to a second')
+} else {
+    console.log('second number is bigger than first');
+}
+output: first number is equal to a second
+
+! = not 
+
+const num1 = 6; 
+const num2 = 6;
+const result = num1 >= num2; 
+const value = false; 
+if (!value) {
+    console.log('value is false');
+}
+output: value is false
+
+//18. EQUALITY//
+
+==: used for comparing two variables, ignores the datatype of the variable
+===: used for comparing two variables, also checks datatype and compares the two values
+
+const num1 = 6;
+const num2 = 6;
+const value = num1 == num2;
+const value2 = num1 === num2;
+console.log(value);
+console.log(value2);
+output: true, true 
+
+const num1 = 6;
+const num2 = '6';
+const value = num1 == num2;
+const value2 = num1 === num2;
+console.log(value);
+console.log(value2);
+output: true, false because they are not the same data type  
+
+const num1 = 6;
+const num2 = 10;
+const value = num1 !== num2;
+const value2 = num1 !=== num2;
+console.log(value);
+console.log(value2);
+output: true, true because the values are indeed NOT equal to each other 
+
+const num1 = 6;
+const num2 = '6';
+const value = num1 !== num2;
+const value2 = num1 !=== num2;
+console.log(value);
+console.log(value2);
+output: false, true 
+for first output: although the values are the same and == does not acknowledge datatype, we are saying that num1 does NOT equal num2 (!==) which is NOT true and generates in the console 'false'
+for the second output: although same value, === recognizes datatype and because num1 is a value and num2 is a string, automatically false; therefore, num 1 not equal to (!===) num2 is 'true'
+
+//19. LOGICAL OPERATORS//
+
+|| = or
+&& = and 
+! = not
+
+const name = 'peter'; 
+const age = 24; 
+if(name === 'bob'){
+    console.log('hello there user');
+} else {
+    console.log('wrong values');
+}
+output: wrong values
+
+const name = 'bob'; 
+const age = 24; 
+if(name === 'bob'){
+    console.log('hello there user');
+} else {
+    console.log('wrong values');
+}
+output: hello there user
+
+const name = 'bob'; 
+const age = 24; 
+if(name === 'bob' || age === 24){
+    console.log('hello there user');
+} else {
+    console.log('wrong values');
+}
+output: hello there user
+
+const name = 'peter'; 
+const age = 24; 
+if(name === 'bob' || age === 24){
+    console.log('hello there user');
+} else {
+    console.log('wrong values');
+}
+output: hello there user
+
+for &&, BOTH VALUES NEED TO BE TRUE
+
+const name = 'peter'; 
+const age = 24; 
+if(name === 'peter' && age === 24){
+    console.log('hello there user');
+} else {
+    console.log('wrong values');
+}
+output: hello there user
+
+const name = 'john'; 
+const age = 24; 
+if(name === 'peter' && age === 24){
+    console.log('hello there user');
+} else {
+    console.log('wrong values');
+}
+output: wrong values
+
+//20. SWITCH STATEMENTS//
+
+const dice = 1; 
+
+if(dice === 1){
+    console.log('you got one');
+}
+if (dice === 2){
+    console.log('you got two');
+}
+if (dice < 1 || dice > 6){
+    console.log('you did not roll the dice');
+}
+
+but for more concise syntax
+
+const dice = 1;
+switch (dice){
+    case 1: 
+        console.log('you got one');
+        break;
+    case 2: 
+        console.log('you got two'); 
+        break;
+    case 3: 
+        console.log('you got three');
+        break;
+        default:
+        console.log('you did not roll the dice');   
+}
+
+//21. LOOPS//
+
+let amount = 10; 
+
+while(amount > 0){
+    console.log('I have ' + amount + " dollars and I'm going to the mall");
+    amount--; 
+}
+output: I have 10 dollars and I'm going to the mall
+        I have 9 dollars and I'm going to the mall
+        I have 8 dollars and I'm going to the mall
+        I have 7 dollars and I'm going to the mall
+        I have 6 dollars and I'm going to the mall
+        I have 5 dollars and I'm going to the mall
+        I have 4 dollars and I'm going to the mall
+        I have 3 dollars and I'm going to the mall
+        I have 2 dollars and I'm going to the mall
+        I have 1 dollars and I'm going to the mall
+
+-
+let money = 0; 
+
+do{
+    console.log('You have ' + money + ' dollars');
+    money++;
+}
+while(money < 10);
+
+output: You have 0 dollars
+        You have 1 dollars
+        You have 2 dollars
+        You have 3 dollars
+        You have 4 dollars
+        You have 5 dollars
+        You have 6 dollars
+        You have 7 dollars
+        You have 8 dollars
+        You have 9 dollars
+
+-
+
+let i;
+for(i = 0; i < 10; i++){
+    console.log('and the number is : ' + i);
+}
+or 
+for (let number =11; number >= 0; number--){
+    console.log('and the number is : ' + number);
+}
+
+************************************
+      END OF JAVASCRIPT BASICS
+************************************
